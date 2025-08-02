@@ -5,7 +5,7 @@ import torch
 # Load model and tokenizer (first time takes ~1GB)
 @st.cache_resource
 def load_model():
-    model_name = "distilgpt2"  # Small, offline-compatible
+    model_name = "google/flan-t5-small"  # Small, offline-compatible
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(model_name)
     return tokenizer, model
@@ -57,4 +57,5 @@ if st.session_state.chat_history:
     st.subheader("💬 Chat History")
     for i, (q, a) in enumerate(reversed(st.session_state.chat_history), 1):
         st.markdown(f"**Q{i}:** {q}")
+
         st.markdown(f"**A{i}:** {a}")
